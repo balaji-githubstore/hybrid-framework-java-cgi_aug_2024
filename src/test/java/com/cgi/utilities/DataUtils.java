@@ -1,5 +1,7 @@
 package com.cgi.utilities;
 
+import java.io.IOException;
+
 import org.testng.annotations.DataProvider;
 
 public class DataUtils {
@@ -19,4 +21,11 @@ public class DataUtils {
 		return data;
 	}
 	
+	@DataProvider
+	public String[][] commonDataProvider() throws IOException
+	{
+		//test method name is the sheetname
+		String[][] data=ExcelUtils.getSheetIntoTwoDimensionalArray("src/test/resources/test-data/hr_test_data.xlsx", "invalidLoginTest");
+		return data;
+	}
 }
