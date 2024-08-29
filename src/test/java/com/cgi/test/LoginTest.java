@@ -5,28 +5,27 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.cgi.base.AutomationWrapper;
+import com.cgi.utilities.DataUtils;
 
 public class LoginTest extends AutomationWrapper {
-	
+
 	@Test
-	public void validLoginTest()
-	{
+	public void validLoginTest() {
 		driver.findElement(By.name("username")).sendKeys("Admin");
 		driver.findElement(By.name("password")).sendKeys("admin123");
 		driver.findElement(By.xpath("//button[contains(normalize-space(),'Log')]")).click();
 
-		String actualText=driver.findElement(By.xpath("//p[contains(normalize-space(),'Quick')]")).getText();
+		String actualText = driver.findElement(By.xpath("//p[contains(normalize-space(),'Quick')]")).getText();
 		Assert.assertEquals(actualText, "Quick Launch");
 	}
 
-	@Test
-	public void invalidLoginTest()
-	{
-		driver.findElement(By.name("username")).sendKeys("john123");
-		driver.findElement(By.name("password")).sendKeys("admin123");
+	@Test(dataProvider = "invalidLoginData",dataProviderClass = DataUtils.class)
+	public void invalidLoginTest(String username, String password, String expectedError) {
+		driver.findElement(By.name("username")).sendKeys(username);
+		driver.findElement(By.name("password")).sendKeys(password);
 		driver.findElement(By.xpath("//button[contains(normalize-space(),'Log')]")).click();
-		
-		String actualError=driver.findElement(By.xpath("//p[contains(normalize-space(),'Invalid')]")).getText();
-		Assert.assertEquals(actualError, "Quick Launch");
+
+		String actualError = driver.findElement(By.xpath("//p[contains(normalize-space(),'Invalid')]")).getText();
+		Assert.assertEquals(actualError, expectedError);
 	}
 }
