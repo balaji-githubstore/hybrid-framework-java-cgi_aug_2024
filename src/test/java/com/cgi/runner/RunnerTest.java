@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 		features = {"src/test/resources/feature/"}
-		,glue = {"com.cgi.steps"}
+		,glue = {"com.cgi.steps","com.cgi.base"}
 		//,dryRun = true
 		//,publish = true
 		,plugin= {"html:target/cucumber-report.html"}

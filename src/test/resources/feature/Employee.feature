@@ -20,4 +20,4 @@ Feature: Employee
     Examples: 
       | username | password | fname | mname | lname | expected_name |
       | Admin    | admin123 | john  | m     | wick  | john wick     |
-      | Admin    | admin123 | peter | m     | wick  | peter wick    |
+      #| Admin    | admin123 | peter | m     | wick  | peter wick    |

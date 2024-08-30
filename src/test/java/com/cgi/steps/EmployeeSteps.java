@@ -3,15 +3,25 @@ package com.cgi.steps;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.By;
+
+import com.cgi.base.AutomationWrapper;
+
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class EmployeeSteps {
 	
+	private AutomationWrapper wrapper;
+	public EmployeeSteps(AutomationWrapper wrapper)
+	{
+		this.wrapper=wrapper;
+	}
+	
 	@When("I click on PIM menu")
 	public void i_click_on_pim_menu() {
-
+		wrapper.driver.findElement(By.xpath("//span[text()='PIM']")).click();
 	}
 
 	@When("I click on Add employee menu")
