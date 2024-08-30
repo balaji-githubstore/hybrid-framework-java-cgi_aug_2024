@@ -1,6 +1,7 @@
 package com.cgi.utilities;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.testng.annotations.DataProvider;
 
@@ -22,10 +23,15 @@ public class DataUtils {
 	}
 	
 	@DataProvider
-	public String[][] commonDataProvider() throws IOException
+	public String[][] commonDataProvider(Method mtd) throws IOException
 	{
+		
+		//mtd.getName(); --> gives current @Test method name
 		//test method name is the sheetname
-		String[][] data=ExcelUtils.getSheetIntoTwoDimensionalArray("src/test/resources/test-data/hr_test_data.xlsx", "invalidLoginTest");
+		
+		String sheetname=mtd.getName();
+		String[][] data=ExcelUtils.getSheetIntoTwoDimensionalArray("src/test/resources/test-data/hr_test_data.xlsx", 
+				sheetname);
 		return data;
 	}
 }
