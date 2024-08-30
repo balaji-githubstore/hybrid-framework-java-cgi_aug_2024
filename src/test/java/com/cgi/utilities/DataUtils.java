@@ -25,7 +25,6 @@ public class DataUtils {
 	@DataProvider
 	public String[][] commonDataProvider(Method mtd) throws IOException
 	{
-		
 		//mtd.getName(); --> gives current @Test method name
 		//test method name is the sheetname
 		
